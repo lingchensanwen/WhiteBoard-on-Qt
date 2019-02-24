@@ -12,10 +12,13 @@ public:
 
 signals:
     void message(QByteArray data);//将消息传出来
-}
 
 
-
+protected slots:
+    void InConnect();//连接上时，槽
+    void ToRead();//读取，槽
+    void Error(QAbstractSocket::SocketError err);//出现错误，槽
+};
 
 
 #endif // WBCONNECT_H

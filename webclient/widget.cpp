@@ -1,15 +1,13 @@
 #include "widget.h"
-#include "ui_widget.h"
 #include <QHBoxLayout> //水平布局
 #include <QVBoxLayout> //垂直布局
 #include <QPushButton>
 #include <QLabel>
 #include <QDebug>
+
 Widget::Widget(QWidget *parent) :
-    QWidget(parent), new_connect(nullptr)//初始化，避免野指针
-    ;ui(new Ui::Widget)
+    QWidget(parent), new_connect(nullptr)
 {
-    ui->setupUi(this);
     QHBoxLayout *mainlayout = new QHBoxLayout(this);//主界面设为左右分割
     QVBoxLayout *leftlayout = new QVBoxLayout;//设置左页面为垂直布局
     mainlayout->addLayout(leftlayout);//将左页面加入主页面
@@ -33,17 +31,16 @@ Widget::Widget(QWidget *parent) :
 
     ToRecMsg = new QLineEdit;
     ToRecMsg->setReadOnly(true);//只用来显示，设置为只读
-    rightlayout->addWidget(ToSendMsg);
+    rightlayout->addWidget(ToRecMsg);
 
     rightlayout->addStretch(1);
 }
 
 Widget::~Widget()
 {
-    delete ui;
 }
 
-void Widget::Interface(QString host, QString port)
+void Widget::Interface(QString host, quint16 port)
 {
     if(!new_connect)
     {
@@ -56,5 +53,20 @@ void Widget::Interface(QString host, QString port)
 
 void Widget::SetConnect()
 {
-    qDebug << __FUNCTION__;//连接上时，打印出函数信息
+    qDebug() << __FUNCTION__;//连接上时，打印出函数信息
+}
+
+void Widget::SendMsgToServer(){
+    if(new_connect && new_connect->state() == QAbstractSocket::ConnectedState){
+        QString msg = ToSendMsg->text();
+        if(msg.length()){
+            new_connect->write(msg.toUtf8());
+        }
+    }
+
+}
+void Widget::RecMsgFromServer(QByteArray data)
+{
+    QString strMsg = QString::fromUtf8(data);//接收到消息后显示消息，消息用UTF8发送的
+    ToRecMsg->setText(strMsg);
 }

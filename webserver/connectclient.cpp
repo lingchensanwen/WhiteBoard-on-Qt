@@ -13,7 +13,7 @@ ConnectClient::~ConnectClient(){
 
 QString ConnectClient::info()//打印信息
 {
-    QString strInfo = QString("%1 : %2").arg(peerAddress().toString()).arg(peerPort());
+    QString strInfo = QString("%1 : %2").arg(peerAddress().toString()).arg(peerPort());//if connected, who are we connecting to
     return strInfo;
 
 }

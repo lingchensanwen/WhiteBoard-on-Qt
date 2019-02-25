@@ -1,1 +1,0 @@
-To test whether I successfully changed the git author or not.

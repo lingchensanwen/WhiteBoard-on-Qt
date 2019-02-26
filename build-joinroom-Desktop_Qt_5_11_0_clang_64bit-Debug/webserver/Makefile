@@ -700,6 +700,8 @@ moc_wbserver.cpp: ../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/H
 		../../joinroom/webserver/connectclient.h \
 		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
 		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/QJsonArray \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonarray.h \
 		../../joinroom/webserver/wbserver.h \
 		moc_predefs.h \
 		../../../../Qt5.11.0/5.11.0/clang_64/bin/moc
@@ -735,7 +737,9 @@ main.o: ../../joinroom/webserver/main.cpp ../../../../Qt5.11.0/5.11.0/clang_64/l
 		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
 		../../joinroom/webserver/connectclient.h \
 		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/QJsonArray \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonarray.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../joinroom/webserver/main.cpp
 
 wbserver.o: ../../joinroom/webserver/wbserver.cpp ../../joinroom/webserver/wbserver.h \
@@ -743,7 +747,17 @@ wbserver.o: ../../joinroom/webserver/wbserver.cpp ../../joinroom/webserver/wbser
 		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
 		../../joinroom/webserver/connectclient.h \
 		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/QJsonArray \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonarray.h \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/QJsonDocument \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/QJsonObject \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/QJsonValue \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonvalue.h \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wbserver.o ../../joinroom/webserver/wbserver.cpp
 
 connectclient.o: ../../joinroom/webserver/connectclient.cpp ../../joinroom/webserver/connectclient.h \
@@ -751,6 +765,12 @@ connectclient.o: ../../joinroom/webserver/connectclient.cpp ../../joinroom/webse
 		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/QHostAddress \
 		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/QJsonDocument \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/QJsonObject \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/QJsonValue \
+		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonvalue.h \
 		../../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o connectclient.o ../../joinroom/webserver/connectclient.cpp
 

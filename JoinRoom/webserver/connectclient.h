@@ -12,8 +12,22 @@ public:
 
     QString info();//信息
 
+    int id(){return mb_id;}//每一个客户端连接都有一个id
+    void resetState(){ mb_id = -1;}//用户断开时候，id重置为-1
+
+    static int GenerateNewId();
+
+signals:
+    void UserJoin(QByteArray name, int id);
+    void UserLeft(QByteArray name, int id);
+
 protected slots://声明槽，子类中也可调用
     void ToRead();
+
+protected:
+    static int m_idBase;//全局唯一的id，辅助产生用户id
+    QByteArray mb_name; //名字
+    int mb_id;
 
 };
 #endif // CONNECTCLIENT_H

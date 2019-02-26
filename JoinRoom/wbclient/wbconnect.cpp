@@ -22,7 +22,7 @@ void WbConnect::join(QString name, QString host, int port){
 }
 
 void WbConnect::left(){
-    const char leftMsg[] = "{\"type\":\"left room\"}";//离开时发送该消息给服务端
+    const char leftMsg[] = "{\"type\":\"left\"}\n";//离开时发送该消息给服务端
     write(leftMsg);
 }
 
@@ -56,7 +56,11 @@ void WbConnect::ToRead(){
                 //TODO: extra figures and update
                 emit joined(mb_names, mb_ids);
             }
-
+            else if(type == "someone_joined"){
+                QString name = root.value("name").toString();
+                int id = root["id"].toInt();
+                emit joined(name, id);
+            }
             else if(type == "user_left")
             {
                 QString name = root.value("name").toString();

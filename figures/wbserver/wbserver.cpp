@@ -16,6 +16,9 @@ void WbServer::incomingConnection(qintptr sock){
     mb_clients.push_back(thread_now);//连接加入列表中
     connect(thread_now, SIGNAL(UserJoin(QByteArray,int)), this, SLOT(onUserJoined(QByteArray,int)));
     connect(thread_now, SIGNAL(UserLeft(QByteArray,int)), this, SLOT(onUserLeft(QByteArray,int)));
+    connect(thread_now, SIGNAL(addFigureReq(QJsonObject)), this, SLOT(onAddFigureReq(QJsonObject)));
+    connect(thread_now, SIGNAL(deleteFigureReq(int)), this, SLOT(onDeleteFigureReq(int)));
+    connect(thread_now, SIGNAL(clearFigureReq(int)), this, SLOT(onClearFigureReq(int)));
     qDebug() << __FUNCTION__ << " : " << thread_now->info(); //打印调试信息，打印客户端info
 }
 
@@ -89,4 +92,58 @@ void WbServer::onUserLeft(QByteArray name, int id){
     //广播有人离开
     qDebug() << "WbServer::onUserLeft broadcast someone left";
     for(auto all_connect: mb_clients) all_connect->write(jsonString);
+}
+
+void WbServer::onAddFigureReq(const QJsonObject &figure){
+    //创建要广播的消息
+    m_figures.append(QJsonValue(figure));
+    QJsonDocument doc;
+    QJsonObject root;
+    root.insert("type", QJsonValue("add"));
+    root.insert("figure", QJsonValue(figure));
+    doc.setObject(root);
+    QByteArray msg = doc.toJson(QJsonDocument::Compact);
+    msg.append("\n");
+    //服务端广播add消息
+    for(auto c: mb_clients) c->write(msg);
+}
+
+void WbServer::onDeleteFigureReq(int globalId){
+    //用globalId匹配，在列表中若找到，即删除
+    auto it = m_figures.begin();
+    while(it != m_figures.end()){
+        if(globalId == it->toObject().value("global_id").toInt())
+        {
+            qDebug() << __FUNCTION__ << "delete a figure";
+            m_figures.erase(it);
+            break;
+        }
+        it++;
+    }
+    //广播
+    char msg[128] = {0};
+    int sz = sprintf(msg, "{\"type\":\"delete\",\"global_id\":%d}\n", globalId);//sz为这串信息的大小
+    for(auto c : mb_clients) c->write(msg, sz);//write sz个大小的数据（msg）
+}
+
+void WbServer::onClearFigureReq(int ownerId){
+    //ownerId=1时候，清除所有
+    if(ownerId == -1){
+        while(m_figures.size()) m_figures.pop_front();
+    }
+    else{
+        auto it = m_figures.begin();
+        while(it != m_figures.end()){
+            if(ownerId == it->toObject().value("creator").toInt()){
+                it = m_figures.erase(it);
+                qDebug() << __FUNCTION__ << " delete a figure of " << ownerId;
+            }
+            it++;
+        }
+    }
+    //广播
+    char msg[128] = {0};
+    int sz = sprintf(msg, "{\"type\":\"clear\",\"owner_id\":%d}\n", ownerId);//sz为这串信息的大小
+    for(auto c : mb_clients) c->write(msg, sz);//write sz个大小的数据（msg）
+
 }

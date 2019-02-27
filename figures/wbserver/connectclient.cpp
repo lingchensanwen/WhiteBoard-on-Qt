@@ -10,6 +10,11 @@ int ConnectClient::m_idBase = 0;
 int ConnectClient::GenerateNewId(){
     return ++m_idBase;//简单的id产生，自增
 }
+
+int ConnectClient::m_figureIdBase = 0;
+int ConnectClient::GenerateNewFigureId(){
+    return ++m_figureIdBase;
+}
 ConnectClient::ConnectClient(QObject *parent):QTcpSocket(parent), mb_id(-1)//列表赋值，指定父窗口
 {
     connect(this, SIGNAL(readyRead()), this, SLOT(ToRead()));//连接信号和槽，readyRead从QLDevice继承得来
@@ -58,6 +63,17 @@ void ConnectClient::ToRead()
                     qDebug() << mb_name << "left, id - "<< mb_id << "from" << info();
                     emit UserLeft(mb_name, mb_id);
                 }
+            }
+            else if(type == "add"){
+                QJsonObject figure = root.value("figure").toObject();
+                figure.insert("global_id", QJsonValue(GenerateNewFigureId()));
+                emit addFigureReq(figure);
+            }
+            else if(type == "delete"){
+                emit deleteFigureReq(root.value("global_id").toInt());
+            }
+            else if(type == "clear"){
+                emit clearFigureReq(root.value("owner_id").toInt());
             }
             else{
                 qDebug() << __FUNCTION__ << "got unknown message, type -" <<type;

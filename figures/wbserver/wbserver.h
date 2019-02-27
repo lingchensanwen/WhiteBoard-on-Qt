@@ -15,6 +15,9 @@ public:
 protected slots:
     void onUserJoined(QByteArray name, int id);
     void onUserLeft(QByteArray name, int id);
+    void onAddFigureReq(const QJsonObject &figure);
+    void onDeleteFigureReq(int globalId);
+    void onClearFigureReq(int ownerId);
 
 protected:
     void incomingConnection(qintptr sock);//接收传入连接

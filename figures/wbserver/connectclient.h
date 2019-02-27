@@ -16,16 +16,21 @@ public:
     void resetState(){ mb_id = -1;}//用户断开时候，id重置为-1
 
     static int GenerateNewId();
+    static int GenerateNewFigureId();
 
 signals:
     void UserJoin(QByteArray name, int id);
     void UserLeft(QByteArray name, int id);
+    void addFigureReq(const QJsonObject &figure);
+    void deleteFigureReq(int global_id);
+    void clearFigureReq(int owner_id);
 
 protected slots://声明槽，子类中也可调用
     void ToRead();
 
 protected:
     static int m_idBase;//全局唯一的id，辅助产生用户id
+    static int m_figureIdBase;
     QByteArray mb_name; //名字
     int mb_id;
 

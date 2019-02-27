@@ -35,7 +35,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = webclient1.0.0
-DISTDIR = /Users/wuyating/Desktop/final\ /build-webclient-Desktop_Qt_5_11_0_clang_64bit-Debug/.tmp/webclient1.0.0
+DISTDIR = /Users/wuyating/Desktop/WhiteBoard/build-webclient-Desktop_Qt_5_11_0_clang_64bit-Debug/.tmp/webclient1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.11 -Wl,-rpath,@executable_path/Frameworks -Wl,-rpath,/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib
 LIBS          = $(SUBLIBS) -F/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework QtNetwork -framework OpenGL -framework AGL 
@@ -219,6 +219,7 @@ DIST          = ../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/spec_pre.prf 
 		../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/qt_config.prf \
 		../../../Qt5.11.0/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/spec_post.prf \
+		../.qmake.stash \
 		../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/toolchain.prf \
@@ -427,6 +428,7 @@ Makefile: ../webclient/webclient.pro ../../../Qt5.11.0/5.11.0/clang_64/mkspecs/m
 		../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/qt_config.prf \
 		../../../Qt5.11.0/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/spec_post.prf \
+		../.qmake.stash \
 		../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/toolchain.prf \
@@ -620,6 +622,7 @@ Makefile: ../webclient/webclient.pro ../../../Qt5.11.0/5.11.0/clang_64/mkspecs/m
 ../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/qt_config.prf:
 ../../../Qt5.11.0/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/spec_post.prf:
+../.qmake.stash:
 ../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/mac/sdk.prf:
 ../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/toolchain.prf:
@@ -728,14 +731,14 @@ moc_widget.cpp: ../../../Qt5.11.0/5.11.0/clang_64/lib/QtWidgets.framework/Header
 		../webclient/widget.h \
 		moc_predefs.h \
 		../../../Qt5.11.0/5.11.0/clang_64/bin/moc
-	/Users/wuyating/Qt5.11.0/5.11.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/mkspecs/macx-clang -I'/Users/wuyating/Desktop/final /webclient' -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtGui.framework/Headers -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib ../webclient/widget.h -o moc_widget.cpp
+	/Users/wuyating/Qt5.11.0/5.11.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/mkspecs/macx-clang -I/Users/wuyating/Desktop/WhiteBoard/webclient -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtGui.framework/Headers -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib ../webclient/widget.h -o moc_widget.cpp
 
 moc_wbconnect.cpp: ../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
 		../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
 		../webclient/wbconnect.h \
 		moc_predefs.h \
 		../../../Qt5.11.0/5.11.0/clang_64/bin/moc
-	/Users/wuyating/Qt5.11.0/5.11.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/mkspecs/macx-clang -I'/Users/wuyating/Desktop/final /webclient' -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtGui.framework/Headers -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib ../webclient/wbconnect.h -o moc_wbconnect.cpp
+	/Users/wuyating/Qt5.11.0/5.11.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/mkspecs/macx-clang -I/Users/wuyating/Desktop/WhiteBoard/webclient -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtGui.framework/Headers -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/wuyating/Qt5.11.0/5.11.0/clang_64/lib ../webclient/wbconnect.h -o moc_wbconnect.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -780,7 +783,6 @@ widget.o: ../webclient/widget.cpp ../webclient/widget.h \
 		../webclient/wbconnect.h \
 		../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
 		../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
-		ui_widget.h \
 		../../../Qt5.11.0/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
 		../../../Qt5.11.0/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		../../../Qt5.11.0/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
@@ -794,7 +796,9 @@ widget.o: ../webclient/widget.cpp ../webclient/widget.h \
 
 wbconnect.o: ../webclient/wbconnect.cpp ../webclient/wbconnect.h \
 		../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h
+		../../../Qt5.11.0/5.11.0/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../Qt5.11.0/5.11.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wbconnect.o ../webclient/wbconnect.cpp
 
 moc_widget.o: moc_widget.cpp 

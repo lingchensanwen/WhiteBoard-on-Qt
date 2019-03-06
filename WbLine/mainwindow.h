@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "painterscene.h"
 
 class MainWindow : public QMainWindow
 {
@@ -18,6 +19,8 @@ protected slots:
     void onDrawTriangleAct();
     void onDrawFreeAct();
 
+protected:
+    PainterScene *m_scene;
 };
 
 #endif // MAINWINDOW_H

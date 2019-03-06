@@ -55,5 +55,5 @@ protected:
     QLineF m_line;
     QRectF m_rcBounding;
     QPen m_pen;
-}
+};
 #endif // SHAPE_H

@@ -7,7 +7,7 @@ PainterView::PainterView(QGraphicsScene *scene, QWidget *parent):
 
     setRenderHint(QPainter::Antialiasing, true);//反锯齿提示，使绘制更加平滑
 }
-
+#if 0
 void PainterView::mousePressEvent(QMouseEvent *ev){
     qDebug() << "PainterView::mousePressEvent";
     QGraphicsView::mousePressEvent(ev);
@@ -34,3 +34,4 @@ void PainterView::resizeEvent(QResizeEvent *event){
     }
 
 }
+#endif

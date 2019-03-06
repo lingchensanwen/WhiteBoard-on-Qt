@@ -87,7 +87,12 @@ void PainterScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *ev){
     QGraphicsScene::mouseReleaseEvent(ev);
     if(ev->button() != Qt::LeftButton) return;//只处理鼠标左键
     if(!ev->isAccepted() && m_currentShape){
-        if(!m_currentShape->isValid()){
+        if(m_currentShape->isValid()){
+            //To do
+            QJsonObject figure;
+            emit addFigureReq(figure);
+        }
+        else{
             removeItem(m_currentShape);
             delete m_currentShape;
         }

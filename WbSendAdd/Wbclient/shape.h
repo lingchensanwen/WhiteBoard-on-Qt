@@ -28,6 +28,7 @@ public:
     virtual void setStrokeColor(const QColor &color) {m_strokeColor = color ;}
     virtual void setFillColor(const QColor &color) {m_fillColor = color; }
     virtual bool isValid(){ return true; }//判断图形是否有效
+    virtual void serialize(QJsonObject &obj) = 0;
 
 protected:
     int m_type;//成员变量，类型
@@ -49,6 +50,7 @@ public:
     void setEndPoint(const QPointF &pos) override;
     void setStrokeWidth(float w) override;
     void setStrokeColor(const QColor &color) override;
+    void serialize(QJsonObject &obj) override;
 
 protected:
     QPointF m_startPosScene;
@@ -71,6 +73,7 @@ public:
     void setStrokeWidth(float w) override;
     void setStrokeColor(const QColor &color) override;
     void setFillColor(const QColor &color) override;
+    void serialize(QJsonObject &obj) override;
 
 protected:
     QPointF m_startPosScene;
@@ -111,6 +114,7 @@ public:
     void setEndPoint(const QPointF &pos) override;
     void setStrokeWidth(float w) override;
     void setStrokeColor(const QColor &color) override;
+    void serialize(QJsonObject &obj) override;
 
 protected:
     QPointF m_startPosScene;

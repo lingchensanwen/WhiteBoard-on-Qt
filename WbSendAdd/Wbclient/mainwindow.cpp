@@ -84,6 +84,13 @@ void MainWindow::preparePainterUI(){
     m_scene = new PainterScene();
     auto *view = new PainterView(m_scene);//将view与scene关联,场景左上角一直与视图左上角重合
 
+    connect(m_scene, SIGNAL(addFigureReq(QJsonObject)),
+            this, SLOT(onAddFigureReq(QJsonObject)));
+    connect(m_scene, SIGNAL(deleteFigureReq(int)),
+            this, SLOT(onDeleteFigureReq(int)));
+    connect(m_scene, SIGNAL(clearFigureReq(int)),
+            this, SLOT(onClearFigureReq(int)));
+
     setCentralWidget(view);
 }
 void MainWindow::onDrawLineAct(){
@@ -128,6 +135,7 @@ void MainWindow::onJoined(QString m_name, int id){
     if(id == m_conn->id()){//自己加入聊天室成功，准备preparePainterUI
         m_nameEdit = nullptr;
         preparePainterUI();
+        m_scene->setUserId(id);
     }
     else{
         //To do

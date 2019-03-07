@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 #include "shape.h"
 #include <QJsonObject>
+#include <list>
 
 class PainterScene: public QGraphicsScene{
     Q_OBJECT
@@ -12,6 +13,8 @@ public:
     ~PainterScene();
 
     void setToolType(int type);
+
+    void setUserId(int id){m_id = id ;}//提供对外接口来设置id
     void onFigureAdded(const QJsonObject &figure);
     void onFigureDeleted(int id);
     void onFigureCleared(int OwnerId);
@@ -28,7 +31,9 @@ signals:
 
 protected:
     int m_toolType;
+    int m_id;
     Shape *m_currentShape;
+    std::list<Shape*> m_shapes;//保存所有图形
 
 };
 #endif // PAINTERSCENE_H

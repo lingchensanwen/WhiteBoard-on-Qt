@@ -1,5 +1,9 @@
 #include "shape.h"
 
+int Shape::m_idBase = 0;
+int Shape::gernerateLocalId(){
+    return ++m_idBase;
+}
 
 //SLine
 
@@ -71,6 +75,21 @@ void SLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     painter->restore();//恢复painter状态
 }
 
+void SLine::serialize(QJsonObject &obj){
+    obj.insert("type", QJsonValue("line"));
+    QJsonObject data;
+    data.insert("color", QJsonValue((qint64)(m_strokeColor.rgba())));//转换为int型，方便QJsonValue处理
+    data.insert("fill_color", QJsonValue((qint64)(m_fillColor.rgba())));
+    data.insert("line_width", QJsonValue((qint64)(m_strokeWidth)));
+    QJsonArray points;
+    points.append(QJsonValue(m_startPosScene.x()));
+    points.append(QJsonValue(m_startPosScene.y()));
+    points.append(QJsonValue(m_endPosScene.x()));
+    points.append(QJsonValue(m_endPosScene.y()));
+    data.insert("points", QJsonValue(points));
+    obj.insert("data", QJsonValue(data));
+
+}
 //SRectangle
 
 SRectangle::SRectangle(int type) : Shape(type), m_rcBounding(0, 0, 0, 0)
@@ -117,6 +136,35 @@ void SRectangle::setFillColor(const QColor &color){
     m_fillColor = color;
 }
 
+void SRectangle::serialize(QJsonObject &obj){
+    switch(m_type){
+        case tt_Rectangle:
+            obj.insert("type", QJsonValue("rectangle"));
+            break;
+        case tt_Circle:
+            obj.insert("type", QJsonValue("oval"));
+            break;
+        case tt_Triangle:
+            obj.insert("type", QJsonValue("triangle"));
+            break;
+        default:
+            return;
+    }
+
+
+    QJsonObject data;
+    data.insert("color", QJsonValue((qint64)(m_strokeColor.rgba())));//转换为int型，方便QJsonValue处理
+    data.insert("fill_color", QJsonValue((qint64)(m_fillColor.rgba())));
+    data.insert("line_width", QJsonValue((qint64)(m_strokeWidth)));
+    QJsonArray points;
+    points.append(QJsonValue(m_startPosScene.x()));
+    points.append(QJsonValue(m_startPosScene.y()));
+    points.append(QJsonValue(m_endPosScene.x()));
+    points.append(QJsonValue(m_endPosScene.y()));
+    data.insert("points", QJsonValue(points));
+    obj.insert("data", QJsonValue(data));
+
+}
 QRectF SRectangle::boundingRect() const{
     return m_rcBounding;
 }
@@ -223,6 +271,26 @@ void SGraffiti::setStrokeColor(const QColor &color){
     m_pen.setColor(color);
 }
 
+void SGraffiti::serialize(QJsonObject &obj){
+    obj.insert("type", QJsonValue("graffiti"));
+
+    QJsonObject data;
+    data.insert("color", QJsonValue((qint64)(m_strokeColor.rgba())));//转换为int型，方便QJsonValue处理
+    data.insert("fill_color", QJsonValue((qint64)(m_fillColor.rgba())));
+    data.insert("line_width", QJsonValue((qint64)(m_strokeWidth)));
+    QJsonArray points;
+
+    int ptCount = m_path.elementCount();
+    QPainterPath::Element e;
+    for(int i = 0; i < ptCount; i++){
+        e = m_path.elementAt(i);
+        points.append(QJsonValue(e.x));
+        points.append(QJsonValue(e.y));
+    }
+    data.insert("points", points);
+    obj.insert("data", QJsonValue(data));
+
+}
 QRectF SGraffiti::boundingRect() const {
     return m_rcBounding;
 }

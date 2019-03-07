@@ -18,6 +18,9 @@ public:
       , m_strokeWidth(1.0f)
       , m_strokeColor(Qt::black)
       , m_fillColor(Qt::transparent)//填充透明
+      , m_creatorId(-1)
+      , m_globalId(-1)
+      , m_localId(gernerateLocalId())
       {}
 
     virtual ~Shape(){}//程序基类，虚构函数
@@ -28,14 +31,29 @@ public:
     virtual void setStrokeColor(const QColor &color) {m_strokeColor = color ;}
     virtual void setFillColor(const QColor &color) {m_fillColor = color; }
     virtual bool isValid(){ return true; }//判断图形是否有效
-    virtual void serialize(QJsonObject &obj) = 0;
+    virtual void serialize(QJsonObject &obj) = 0;//接收QJsonObject，新绘制的图形
+
+    static int gernerateLocalId();
+
+    //设置并获取creatorId
+    void setCreatorId(int id){ m_creatorId = id;}
+    int CreatorId(){ return m_creatorId;}
+    //设置并获取globalId
+    void setGlobalId(int id){ m_globalId = id;}
+    int globalId(){ return m_globalId;}
+    //设置并获取localId
+    void setLocalId(int id){ m_localId = id;}
+    int localId(){return m_localId;}
 
 protected:
     int m_type;//成员变量，类型
     float m_strokeWidth;//线段宽度
     QColor m_strokeColor;//线段颜色
     QColor m_fillColor;//填充颜色
-
+    static int m_idBase;
+    int m_creatorId;
+    int m_globalId;
+    int m_localId;
 };
 
 class SLine: public Shape{
@@ -114,7 +132,7 @@ public:
     void setEndPoint(const QPointF &pos) override;
     void setStrokeWidth(float w) override;
     void setStrokeColor(const QColor &color) override;
-    void serialize(QJsonObject &obj) override;
+    void serialize(QJsonObject &obj) override;//图形信息系列化到Json中去
 
 protected:
     QPointF m_startPosScene;

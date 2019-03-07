@@ -5,6 +5,7 @@ PainterScene::PainterScene(QObject *parent)
     : QGraphicsScene(parent)
     , m_toolType(tt_Line)
     , m_currentShape(nullptr)
+    , m_id(-1)
 {
 
 }
@@ -64,7 +65,7 @@ void PainterScene::mousePressEvent(QGraphicsSceneMouseEvent *ev){
             m_currentShape = new SGraffiti();
             m_currentShape->setStrokeColor(Qt::black);
             m_currentShape->setStrokeWidth(4);
-            break;//To Do
+            break;
         default:
             return;
 
@@ -88,8 +89,12 @@ void PainterScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *ev){
     if(ev->button() != Qt::LeftButton) return;//只处理鼠标左键
     if(!ev->isAccepted() && m_currentShape){
         if(m_currentShape->isValid()){
-            //To do
+
+            m_shapes.push_back(m_currentShape);//图形保存到列表中
             QJsonObject figure;
+            m_currentShape->serialize(figure);//将绘制的Json信息保存在figure中
+            figure.insert("creator", QJsonValue(m_id));
+            figure.insert("local_id", QJsonValue(m_currentShape->localId()));
             emit addFigureReq(figure);
         }
         else{

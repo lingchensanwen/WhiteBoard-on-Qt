@@ -53,6 +53,7 @@ void WbConnect::ClearFigures(int ownerId){//clear时候调用write方法，发�
     flush();
 }
 
+
 void WbConnect::InConnect(){//join时候调用write方法，发送join信息给服务端
     qDebug() << __FUNCTION__;
     QJsonDocument doc;
@@ -88,6 +89,8 @@ void WbConnect::ToRead(){//处理来自服务端消息
                 {
                     emit figureAdded((*it).toObject());
                 }
+
+
             }
             else if(type == "someone_joined"){
                 QString name = root.value("name").toString();
@@ -109,6 +112,14 @@ void WbConnect::ToRead(){//处理来自服务端消息
             else if(type == "clear"){
                 emit figureCleared(root.value("owner_id").toInt());
             }
+            else if(type == "chat"){
+                QString name = root["name"].toString();
+                mb_name = name.toUtf8();//转换为UTF8格式
+                QString message = root["message"].toString();
+                msg = message.toUtf8();
+                emit UserChated(mb_name, msg);//发射信号
+            }
+
             else{
             qDebug() << "WbConnect::ToRead, unknown message, type -" << type;
             }

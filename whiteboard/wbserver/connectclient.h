@@ -21,6 +21,7 @@ public:
 signals:
     void UserJoin(QByteArray name, int id);
     void UserLeft(QByteArray name, int id);
+    void UserChat(QByteArray mb_name,QByteArray msg);
     void addFigureReq(const QJsonObject &figure);
     void deleteFigureReq(int global_id);
     void clearFigureReq(int owner_id);
@@ -32,6 +33,7 @@ protected:
     static int m_idBase;//全局唯一的id，辅助产生用户id
     static int m_figureIdBase;
     QByteArray mb_name; //名字
+    QByteArray msg;
     int mb_id;
 
 };

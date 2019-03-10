@@ -19,6 +19,7 @@ void WbServer::incomingConnection(qintptr sock){
     connect(thread_now, SIGNAL(addFigureReq(QJsonObject)), this, SLOT(onAddFigureReq(QJsonObject)));
     connect(thread_now, SIGNAL(deleteFigureReq(int)), this, SLOT(onDeleteFigureReq(int)));
     connect(thread_now, SIGNAL(clearFigureReq(int)), this, SLOT(onClearFigureReq(int)));
+    connect(thread_now, SIGNAL(UserChat(QByteArray,QByteArray)), this, SLOT(onUserChat(QByteArray,QByteArray)));
     qDebug() << __FUNCTION__ << " : " << thread_now->info(); //打印调试信息，打印客户端info
 }
 
@@ -146,4 +147,18 @@ void WbServer::onClearFigureReq(int ownerId){
     int sz = sprintf(msg, "{\"type\":\"clear\",\"owner_id\":%d}\n", ownerId);//sz为这串信息的大小
     for(auto c : mb_clients) c->write(msg, sz);//write sz个大小的数据（msg）
 
+}
+
+void WbServer::onUserChat(QByteArray mb_name, QByteArray msg){
+    QJsonDocument doc;
+    QJsonObject root;
+    root.insert("type", QJsonValue("chat"));
+    QString Name = QString::fromUtf8(mb_name);
+    root.insert("name", QJsonValue(Name));
+    QString Msg = QString::fromUtf8(msg);
+    root.insert("message", QJsonValue(Msg));
+    doc.setObject(root);
+    QByteArray json = doc.toJson(QJsonDocument::Compact);
+    json.append("\n");
+    for(auto c : mb_clients) c->write(json);
 }

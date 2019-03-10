@@ -36,6 +36,8 @@ protected slots:
     //响应菜单，工具条上按钮
     void onDeleteFigureReq(int id);
     void onClearFigureReq(int ownerId);
+    void onUserChated(QString mb_name,QString msg);
+
 
 protected:
     void prepareJoinUI();
@@ -44,9 +46,15 @@ protected:
 protected:
     PainterScene *m_scene;
     WbConnect *m_conn;
+    QString name_saver;
     QLineEdit *m_nameEdit;
     QLineEdit *m_hostEdit;
+    QTextEdit *m_statusEdit;
     QToolBar *m_toolBar;//切换界面保存toolBar
+    QLineEdit *send_message;
+
+protected slots:
+    void ClicktoSend();
 };
 
 #endif // MAINWINDOW_H

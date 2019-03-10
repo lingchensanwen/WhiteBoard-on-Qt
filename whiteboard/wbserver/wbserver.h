@@ -18,6 +18,7 @@ protected slots:
     void onAddFigureReq(const QJsonObject &figure);
     void onDeleteFigureReq(int globalId);
     void onClearFigureReq(int ownerId);
+    void onUserChat(QByteArray mb_name,QByteArray msg);
 
 protected:
     void incomingConnection(qintptr sock);//接收传入连接
@@ -25,6 +26,7 @@ protected:
 protected:
     std::list<ConnectClient*> mb_clients;//list保存每个客户端连接
     QJsonArray m_figures;//保存所有的图表
+
 };
 
 

@@ -27,6 +27,7 @@ signals:
     void figureDeleted(int id);
     void figureCleared(int OwnerId);
     void errorOccurred(const QString & desc);
+    void UserChated(QString mb_name,QString msg);
 
 protected slots:
     void InConnect();//连接上时，槽
@@ -36,6 +37,8 @@ protected slots:
 protected:
     QString mb_names;
     int mb_ids;
+    QByteArray mb_name; //名字
+    QByteArray msg;
 };
 
 

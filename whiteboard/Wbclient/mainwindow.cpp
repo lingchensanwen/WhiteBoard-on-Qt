@@ -6,7 +6,8 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), m_scene(nullptr)
-    , m_conn(nullptr), m_toolBar(nullptr), m_nameEdit(nullptr)
+    , m_conn(nullptr), m_toolBar(nullptr), m_nameEdit(nullptr), m_statusEdit(nullptr)
+    , m_hostEdit(nullptr), send_message(nullptr)
 {
     prepareJoinUI();
 }
@@ -28,7 +29,7 @@ void MainWindow::prepareJoinUI(){
     QLabel *hostlabel = new QLabel("Input the Server Ip:");
     layout->addWidget(hostlabel);
 
-    m_hostEdit = new QLineEdit("server ip");
+    m_hostEdit = new QLineEdit("127.0.0.1");
     layout->addWidget(m_hostEdit);
 
     auto btn = new QPushButton("Join");
@@ -47,7 +48,7 @@ void MainWindow::preparePainterUI(){
         QToolBar *toolbar = addToolBar("Figure Type");
         QActionGroup *actionGroup = new QActionGroup(toolbar);//加到一个组中，可以设定选择或者互斥
         m_toolBar = toolbar;
-
+        toolbar->setOrientation(Qt::Vertical);
         QAction *action = toolbar->addAction(QIcon(":/res/line.png"),
                                              "Draw a Line",
                                              this,SLOT(onDrawLineAct()));
@@ -109,7 +110,56 @@ void MainWindow::preparePainterUI(){
             this, SLOT(onClearFigureReq(int)));
 
     setCentralWidget(view);
+
+    QToolBar *toolbar1 = addToolBar("Widgets");
+    //Widget聊天界面
+    QWidget *widget = new QWidget;
+    QVBoxLayout *layout = new QVBoxLayout(widget);
+
+    m_statusEdit = new QTextEdit();//显示状态编辑框
+    m_statusEdit->setReadOnly(true);//设置为只读
+    layout->addWidget(m_statusEdit, 1);//加上伸缩参数，拉伸时候随窗口一起变化
+
+    QLabel *message = new QLabel("Input The Message:");
+    layout->addWidget(message);
+    send_message = new QLineEdit("message");
+    layout->addWidget(send_message);
+    auto sendBtn = new QPushButton("Send");//Send按钮
+    connect(sendBtn, SIGNAL(clicked(bool)), this, SLOT(ClicktoSend()));
+    layout->addWidget(sendBtn);
+
+
+
+    layout->addStretch(1);
+
+
+    toolbar1->addWidget(widget);
+
+
+
 }
+
+void MainWindow::ClicktoSend(){
+    if(m_conn && m_conn->state() == QAbstractSocket::ConnectedState){
+
+        QJsonDocument doc;
+        QJsonObject root;
+        root.insert("type", QJsonValue("chat"));
+        root.insert("name", QJsonValue(name_saver));
+        root.insert("message", QJsonValue(send_message->text()));
+        doc.setObject(root);
+        QByteArray json = doc.toJson(QJsonDocument::Compact);
+        json.append("\n");
+        m_conn->write(json);
+        m_conn->flush();
+    }
+}
+
+void MainWindow::onUserChated(QString mb_name,QString msg){
+    qDebug() << __FUNCTION__ ;
+    m_statusEdit->append(QString("%1 speaked: %2\n").arg(mb_name).arg(msg));
+}
+//
 void MainWindow::onDrawLineAct(){
     m_scene->setToolType(tt_Line);
 }
@@ -154,12 +204,15 @@ void MainWindow::onJoinButtonClicked(){
                 this, SLOT(onFigureDeleted(int)));
         connect(m_conn, SIGNAL(figureCleared(int)),
                 this, SLOT(onFigureCleared(int)));
+        connect(m_conn, SIGNAL(UserChated(QString,QString))
+                ,this, SLOT(onUserChated(QString,QString)));
         m_conn->join(strName, strHost, 1996);
     }
 }
 
 void MainWindow::onJoined(QString m_name, int id){
     if(id == m_conn->id()){//自己加入聊天室成功，准备preparePainterUI
+        name_saver = m_nameEdit->text();
         m_nameEdit = nullptr;
         preparePainterUI();
         m_scene->setUserId(id);
@@ -168,6 +221,7 @@ void MainWindow::onJoined(QString m_name, int id){
         //To do
     }
 }
+
 
 void MainWindow::onSomeoneleft(QString name, int id){
     if(id == m_conn->id()){//自己退出成功，preparePainterUI重置，移除toolBar，调用prepareJoinUI

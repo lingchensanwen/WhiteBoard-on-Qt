@@ -75,6 +75,17 @@ void ConnectClient::ToRead()
             else if(type == "clear"){
                 emit clearFigureReq(root.value("owner_id").toInt());
             }
+            else if(type == "chat"){
+                QString name = root["name"].toString();
+                mb_name = name.toUtf8();//转换为UTF8格式
+                QString message = root["message"].toString();
+                msg = message.toUtf8();//转换为UTF8格式
+
+                qDebug() << mb_name << "talked, message - " << msg;
+                qDebug() << "Ready to emit" ;
+                emit UserChat(mb_name, msg);//发射信号
+            }
+
             else{
                 qDebug() << __FUNCTION__ << "got unknown message, type -" <<type;
             }

@@ -219,7 +219,6 @@ DIST          = ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/spec_pre.p
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/spec_post.prf \
-		../../.qmake.stash \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/toolchain.prf \
@@ -428,7 +427,6 @@ Makefile: ../wbclient/wbclient.pro ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/spec_post.prf \
-		../../.qmake.stash \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/toolchain.prf \
@@ -622,7 +620,6 @@ Makefile: ../wbclient/wbclient.pro ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/
 ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/qt_config.prf:
 ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/spec_post.prf:
-../../.qmake.stash:
 ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/mac/sdk.prf:
 ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/toolchain.prf:

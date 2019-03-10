@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../whiteboard/Wbclient/wbconnect.h"
+#include "../../../Add/whiteboard/Wbclient/wbconnect.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_WbConnect_t {
-    QByteArrayData data[20];
-    char stringdata0[181];
+    QByteArrayData data[23];
+    char stringdata0[204];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -46,19 +46,22 @@ QT_MOC_LITERAL(11, 84, 13), // "figureCleared"
 QT_MOC_LITERAL(12, 98, 7), // "OwnerId"
 QT_MOC_LITERAL(13, 106, 13), // "errorOccurred"
 QT_MOC_LITERAL(14, 120, 4), // "desc"
-QT_MOC_LITERAL(15, 125, 9), // "InConnect"
-QT_MOC_LITERAL(16, 135, 6), // "ToRead"
-QT_MOC_LITERAL(17, 142, 5), // "Error"
-QT_MOC_LITERAL(18, 148, 28), // "QAbstractSocket::SocketError"
-QT_MOC_LITERAL(19, 177, 3) // "err"
+QT_MOC_LITERAL(15, 125, 10), // "UserChated"
+QT_MOC_LITERAL(16, 136, 7), // "mb_name"
+QT_MOC_LITERAL(17, 144, 3), // "msg"
+QT_MOC_LITERAL(18, 148, 9), // "InConnect"
+QT_MOC_LITERAL(19, 158, 6), // "ToRead"
+QT_MOC_LITERAL(20, 165, 5), // "Error"
+QT_MOC_LITERAL(21, 171, 28), // "QAbstractSocket::SocketError"
+QT_MOC_LITERAL(22, 200, 3) // "err"
 
     },
     "WbConnect\0message\0\0data\0joined\0name\0"
     "id\0someoneleft\0figureAdded\0figure\0"
     "figureDeleted\0figureCleared\0OwnerId\0"
-    "errorOccurred\0desc\0InConnect\0ToRead\0"
-    "Error\0QAbstractSocket::SocketError\0"
-    "err"
+    "errorOccurred\0desc\0UserChated\0mb_name\0"
+    "msg\0InConnect\0ToRead\0Error\0"
+    "QAbstractSocket::SocketError\0err"
 };
 #undef QT_MOC_LITERAL
 
@@ -68,26 +71,27 @@ static const uint qt_meta_data_WbConnect[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       7,       // signalCount
+       8,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   64,    2, 0x06 /* Public */,
-       4,    2,   67,    2, 0x06 /* Public */,
-       7,    2,   72,    2, 0x06 /* Public */,
-       8,    1,   77,    2, 0x06 /* Public */,
-      10,    1,   80,    2, 0x06 /* Public */,
-      11,    1,   83,    2, 0x06 /* Public */,
-      13,    1,   86,    2, 0x06 /* Public */,
+       1,    1,   69,    2, 0x06 /* Public */,
+       4,    2,   72,    2, 0x06 /* Public */,
+       7,    2,   77,    2, 0x06 /* Public */,
+       8,    1,   82,    2, 0x06 /* Public */,
+      10,    1,   85,    2, 0x06 /* Public */,
+      11,    1,   88,    2, 0x06 /* Public */,
+      13,    1,   91,    2, 0x06 /* Public */,
+      15,    2,   94,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      15,    0,   89,    2, 0x09 /* Protected */,
-      16,    0,   90,    2, 0x09 /* Protected */,
-      17,    1,   91,    2, 0x09 /* Protected */,
+      18,    0,   99,    2, 0x09 /* Protected */,
+      19,    0,  100,    2, 0x09 /* Protected */,
+      20,    1,  101,    2, 0x09 /* Protected */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QByteArray,    3,
@@ -97,11 +101,12 @@ static const uint qt_meta_data_WbConnect[] = {
     QMetaType::Void, QMetaType::Int,    6,
     QMetaType::Void, QMetaType::Int,   12,
     QMetaType::Void, QMetaType::QString,   14,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   16,   17,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 18,   19,
+    QMetaType::Void, 0x80000000 | 21,   22,
 
        0        // eod
 };
@@ -119,15 +124,16 @@ void WbConnect::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 4: _t->figureDeleted((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 5: _t->figureCleared((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 6: _t->errorOccurred((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 7: _t->InConnect(); break;
-        case 8: _t->ToRead(); break;
-        case 9: _t->Error((*reinterpret_cast< QAbstractSocket::SocketError(*)>(_a[1]))); break;
+        case 7: _t->UserChated((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 8: _t->InConnect(); break;
+        case 9: _t->ToRead(); break;
+        case 10: _t->Error((*reinterpret_cast< QAbstractSocket::SocketError(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 9:
+        case 10:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -186,6 +192,13 @@ void WbConnect::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
                 return;
             }
         }
+        {
+            using _t = void (WbConnect::*)(QString , QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&WbConnect::UserChated)) {
+                *result = 7;
+                return;
+            }
+        }
     }
 }
 
@@ -214,13 +227,13 @@ int WbConnect::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 11;
     }
     return _id;
 }
@@ -272,6 +285,13 @@ void WbConnect::errorOccurred(const QString & _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 6, _a);
+}
+
+// SIGNAL 7
+void WbConnect::UserChated(QString _t1, QString _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    QMetaObject::activate(this, &staticMetaObject, 7, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

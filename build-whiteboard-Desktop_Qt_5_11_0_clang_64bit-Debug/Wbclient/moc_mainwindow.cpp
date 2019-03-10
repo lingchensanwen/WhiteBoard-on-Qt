@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../whiteboard/Wbclient/mainwindow.h"
+#include "../../../Add/whiteboard/Wbclient/mainwindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[25];
-    char stringdata0[302];
+    QByteArrayData data[29];
+    char stringdata0[339];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -55,7 +55,11 @@ QT_MOC_LITERAL(20, 239, 4), // "desc"
 QT_MOC_LITERAL(21, 244, 14), // "onAddFigureReq"
 QT_MOC_LITERAL(22, 259, 17), // "onDeleteFigureReq"
 QT_MOC_LITERAL(23, 277, 16), // "onClearFigureReq"
-QT_MOC_LITERAL(24, 294, 7) // "ownerId"
+QT_MOC_LITERAL(24, 294, 7), // "ownerId"
+QT_MOC_LITERAL(25, 302, 12), // "onUserChated"
+QT_MOC_LITERAL(26, 315, 7), // "mb_name"
+QT_MOC_LITERAL(27, 323, 3), // "msg"
+QT_MOC_LITERAL(28, 327, 11) // "ClicktoSend"
 
     },
     "MainWindow\0onDrawLineAct\0\0onDrawRectangleAct\0"
@@ -66,7 +70,8 @@ QT_MOC_LITERAL(24, 294, 7) // "ownerId"
     "onFigureDeleted\0onFigureCleared\0OwnerId\0"
     "onErrorOccurred\0desc\0onAddFigureReq\0"
     "onDeleteFigureReq\0onClearFigureReq\0"
-    "ownerId"
+    "ownerId\0onUserChated\0mb_name\0msg\0"
+    "ClicktoSend"
 };
 #undef QT_MOC_LITERAL
 
@@ -76,7 +81,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      17,   14, // methods
+      19,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -84,23 +89,25 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   99,    2, 0x09 /* Protected */,
-       3,    0,  100,    2, 0x09 /* Protected */,
-       4,    0,  101,    2, 0x09 /* Protected */,
-       5,    0,  102,    2, 0x09 /* Protected */,
-       6,    0,  103,    2, 0x09 /* Protected */,
-       7,    0,  104,    2, 0x09 /* Protected */,
-       8,    0,  105,    2, 0x09 /* Protected */,
-       9,    0,  106,    2, 0x09 /* Protected */,
-      10,    2,  107,    2, 0x09 /* Protected */,
-      13,    2,  112,    2, 0x09 /* Protected */,
-      14,    1,  117,    2, 0x09 /* Protected */,
-      16,    1,  120,    2, 0x09 /* Protected */,
-      17,    1,  123,    2, 0x09 /* Protected */,
-      19,    1,  126,    2, 0x09 /* Protected */,
-      21,    1,  129,    2, 0x09 /* Protected */,
-      22,    1,  132,    2, 0x09 /* Protected */,
-      23,    1,  135,    2, 0x09 /* Protected */,
+       1,    0,  109,    2, 0x09 /* Protected */,
+       3,    0,  110,    2, 0x09 /* Protected */,
+       4,    0,  111,    2, 0x09 /* Protected */,
+       5,    0,  112,    2, 0x09 /* Protected */,
+       6,    0,  113,    2, 0x09 /* Protected */,
+       7,    0,  114,    2, 0x09 /* Protected */,
+       8,    0,  115,    2, 0x09 /* Protected */,
+       9,    0,  116,    2, 0x09 /* Protected */,
+      10,    2,  117,    2, 0x09 /* Protected */,
+      13,    2,  122,    2, 0x09 /* Protected */,
+      14,    1,  127,    2, 0x09 /* Protected */,
+      16,    1,  130,    2, 0x09 /* Protected */,
+      17,    1,  133,    2, 0x09 /* Protected */,
+      19,    1,  136,    2, 0x09 /* Protected */,
+      21,    1,  139,    2, 0x09 /* Protected */,
+      22,    1,  142,    2, 0x09 /* Protected */,
+      23,    1,  145,    2, 0x09 /* Protected */,
+      25,    2,  148,    2, 0x09 /* Protected */,
+      28,    0,  153,    2, 0x09 /* Protected */,
 
  // slots: parameters
     QMetaType::Void,
@@ -120,6 +127,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::QJsonObject,   15,
     QMetaType::Void, QMetaType::Int,   12,
     QMetaType::Void, QMetaType::Int,   24,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   26,   27,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -147,6 +156,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 14: _t->onAddFigureReq((*reinterpret_cast< const QJsonObject(*)>(_a[1]))); break;
         case 15: _t->onDeleteFigureReq((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 16: _t->onClearFigureReq((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 17: _t->onUserChated((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 18: _t->ClicktoSend(); break;
         default: ;
         }
     }
@@ -177,13 +188,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 17)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 17;
+        _id -= 19;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 17)
+        if (_id < 19)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 17;
+        _id -= 19;
     }
     return _id;
 }

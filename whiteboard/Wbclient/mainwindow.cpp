@@ -25,6 +25,12 @@ void MainWindow::prepareJoinUI(){
     m_nameEdit = new QLineEdit("nana");
     layout->addWidget(m_nameEdit);
 
+    QLabel *hostlabel = new QLabel("Input the Server Ip:");
+    layout->addWidget(hostlabel);
+
+    m_hostEdit = new QLineEdit("server ip");
+    layout->addWidget(m_hostEdit);
+
     auto btn = new QPushButton("Join");
     connect(btn, SIGNAL(clicked(bool)), this, SLOT(onJoinButtonClicked()));
     layout->addWidget(btn);
@@ -137,6 +143,7 @@ void MainWindow::onJoinButtonClicked(){
     if(!m_conn){
         m_conn = new WbConnect(this);//创建连接去连接服务器
         QString strName = m_nameEdit->text();
+        QString strHost = m_hostEdit->text();
         connect(m_conn, SIGNAL(joined(QString,int)),
                 this, SLOT(onJoined(QString,int)));
         connect(m_conn, SIGNAL(someoneleft(QString,int)),
@@ -147,7 +154,7 @@ void MainWindow::onJoinButtonClicked(){
                 this, SLOT(onFigureDeleted(int)));
         connect(m_conn, SIGNAL(figureCleared(int)),
                 this, SLOT(onFigureCleared(int)));
-        m_conn->join(strName, "127.0.0.1", 1996);
+        m_conn->join(strName, strHost, 1996);
     }
 }
 

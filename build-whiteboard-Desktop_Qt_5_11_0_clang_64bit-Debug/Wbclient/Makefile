@@ -229,7 +229,7 @@ DIST          = ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/spec_pre.p
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/spec_post.prf \
-		../../whiteboard/Wbclient/.qmake.stash \
+		../../whiteboard/.qmake.stash \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/toolchain.prf \
@@ -444,7 +444,7 @@ Makefile: ../../whiteboard/Wbclient/Wbclient.pro ../../../../Qt5.11.0/5.11.0/cla
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
+		../.qmake.stash \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/toolchain.prf \
@@ -639,7 +639,7 @@ Makefile: ../../whiteboard/Wbclient/Wbclient.pro ../../../../Qt5.11.0/5.11.0/cla
 ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/qt_config.prf:
 ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
+../.qmake.stash:
 ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/mac/sdk.prf:
 ../../../../Qt5.11.0/5.11.0/clang_64/mkspecs/features/toolchain.prf:
@@ -715,7 +715,6 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r Wbclient.app
-	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 

@@ -45,6 +45,7 @@ protected:
     PainterScene *m_scene;
     WbConnect *m_conn;
     QLineEdit *m_nameEdit;
+    QLineEdit *m_hostEdit;
     QToolBar *m_toolBar;//切换界面保存toolBar
 };
 
